@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Calculator App Homepage'),
+      home: const MyHomePage(title: 'Calculator App'),
     );
   }
 }
@@ -31,7 +31,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  int _value = 0;
+  int result = 0;
+  // bool _isresult_decimal = true;
+  String _entered = '';
+
+  // String appnedEntered(String mEntered, String a) {
+  //   return mEntered + a;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +50,59 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              '$_value',
-              style: TextStyle(fontSize: 50.0),
+            SizedBox(
+              height: 80,
+              width: double.infinity,
+              child: Text(
+                '$result',
+                style: TextStyle(fontSize: 50.0),
+              ),
+            ),
+            SizedBox(
+              height: 80,
+              width: double.infinity,
+              child: Text(
+                _entered,
+                style: TextStyle(fontSize: 50.0),
+              ),
+            ),
+            // Clear, - (unary), % (percentage), MOD
+            Row(
+              children: [
+                TextButton(
+                  child: Text('CE'),
+                  onPressed: () {
+                    setState( () {
+                      _entered = '';
+                    });
+                  },
+                ),
+                TextButton(
+                  child: Text('-'),
+                  onPressed: () {
+                    setState( () {
+                      _entered += '-';
+                    });
+                  },
+                ),
+                TextButton(
+                  child: Text('%'),
+                  onPressed: () {
+                    // setState( () {
+                    //   if (_isresult_decimal = true) {
+                    //    
+                    // });
+                  },
+                ),
+                TextButton(
+                  child: Text('MOD'),
+                  onPressed: () {
+                    setState( () {
+                      _entered += '%';
+                    });
+                  },
+                ),
+              ],
             ),
             // 7 8 9 /
             Row(
@@ -54,25 +110,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextButton(
                   child: Text('7'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '7';
+                    });
                   },
                 ),
                 TextButton(
                   child: Text('8'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '8';
+                    });
                   },
                 ),
                 TextButton(
                   child: Text('9'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '9';
+                    });
                   },
                 ),
                 TextButton(
-                  child: Text('/'),
+                  child: Text('÷'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '÷';
+                    });
                   },
                 ),
               ],
@@ -83,25 +147,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextButton(
                   child: Text('4'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '4';
+                    });
                   },
                 ),
                 TextButton(
                   child: Text('5'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '5';
+                    });
                   },
                 ),
                 TextButton(
                   child: Text('6'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '6';
+                    });
                   },
                 ),
                 TextButton(
                   child: Text('*'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '*';
+                    });
                   },
                 ),
               ],
@@ -112,25 +184,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextButton(
                   child: Text('1'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '1';
+                    });
                   },
                 ),
                 TextButton(
                   child: Text('2'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '2';
+                    });
                   },
                 ),
                 TextButton(
                   child: Text('3'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '3';
+                    });
                   },
                 ),
                 TextButton(
-                  child: Text('-'),
+                  child: Text('–'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '–';
+                    });
                   },
                 ),
               ],
@@ -141,25 +221,35 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextButton(
                   child: Text('0'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '0';
+                    });
                   },
                 ),
                 TextButton(
                   child: Text('='),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '=';
+                    });
                   },
                 ),
                 TextButton(
-                  child: Text('<'),
+                  child: Text('<—'),
                   onPressed: () {
-                    
+                    setState( () {
+                      if (_entered.isNotEmpty) {
+                        _entered = _entered.substring(0, _entered.length - 1);
+                      }
+                    });
                   },
                 ),
                 TextButton(
                   child: Text('+'),
                   onPressed: () {
-                    
+                    setState( () {
+                      _entered += '+';
+                    });
                   },
                 ),
               ],
