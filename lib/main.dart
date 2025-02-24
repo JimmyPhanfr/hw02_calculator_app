@@ -32,12 +32,22 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   int result = 0;
-  // bool _isresult_decimal = true;
   String _entered = '';
 
-  // String appnedEntered(String mEntered, String a) {
-  //   return mEntered + a;
-  // }
+    // bool _isresult_decimal = true;
+
+  String appendToEntered(String mEntered, String a){
+    mEntered += a;
+    return mEntered;
+  }
+
+  String backspace(String mEntered){
+    if (mEntered.isNotEmpty) {
+      mEntered = mEntered.substring(0, mEntered.length - 1);
+    }
+    
+    return mEntered;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,25 +90,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextButton(
                   child: Text('-'),
                   onPressed: () {
-                    setState( () {
-                      _entered += '-';
+                    setState(() {
+                      appendToEntered(_entered, '-');                     
                     });
                   },
                 ),
                 TextButton(
                   child: Text('%'),
                   onPressed: () {
-                    // setState( () {
-                    //   if (_isresult_decimal = true) {
-                    //    
-                    // });
+                    // TODO: add int -> percentage functionality
                   },
                 ),
                 TextButton(
                   child: Text('MOD'),
                   onPressed: () {
                     setState( () {
-                      _entered += '%';
+                      _entered = appendToEntered(_entered, '%');
                     });
                   },
                 ),
@@ -111,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('7'),
                   onPressed: () {
                     setState( () {
-                      _entered += '7';
+                      _entered = _entered = appendToEntered(_entered, '7');
                     });
                   },
                 ),
@@ -119,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('8'),
                   onPressed: () {
                     setState( () {
-                      _entered += '8';
+                      _entered = appendToEntered(_entered, '8');
                     });
                   },
                 ),
@@ -127,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('9'),
                   onPressed: () {
                     setState( () {
-                      _entered += '9';
+                      _entered = appendToEntered(_entered, '9');
                     });
                   },
                 ),
@@ -135,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('÷'),
                   onPressed: () {
                     setState( () {
-                      _entered += '÷';
+                      _entered = appendToEntered(_entered, '÷');
                     });
                   },
                 ),
@@ -148,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('4'),
                   onPressed: () {
                     setState( () {
-                      _entered += '4';
+                      _entered = appendToEntered(_entered, '4');
                     });
                   },
                 ),
@@ -156,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('5'),
                   onPressed: () {
                     setState( () {
-                      _entered += '5';
+                      _entered = appendToEntered(_entered, '5');
                     });
                   },
                 ),
@@ -164,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('6'),
                   onPressed: () {
                     setState( () {
-                      _entered += '6';
+                      _entered = appendToEntered(_entered, '6');
                     });
                   },
                 ),
@@ -172,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('*'),
                   onPressed: () {
                     setState( () {
-                      _entered += '*';
+                      _entered = appendToEntered(_entered, '*');
                     });
                   },
                 ),
@@ -185,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('1'),
                   onPressed: () {
                     setState( () {
-                      _entered += '1';
+                      _entered = appendToEntered(_entered, '1');
                     });
                   },
                 ),
@@ -193,7 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('2'),
                   onPressed: () {
                     setState( () {
-                      _entered += '2';
+                      _entered = appendToEntered(_entered, '2');
                     });
                   },
                 ),
@@ -201,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('3'),
                   onPressed: () {
                     setState( () {
-                      _entered += '3';
+                      _entered = appendToEntered(_entered, '3');
                     });
                   },
                 ),
@@ -209,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('–'),
                   onPressed: () {
                     setState( () {
-                      _entered += '–';
+                      _entered = appendToEntered(_entered, '–');
                     });
                   },
                 ),
@@ -222,7 +229,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('0'),
                   onPressed: () {
                     setState( () {
-                      _entered += '0';
+                      _entered = appendToEntered(_entered, '0');
                     });
                   },
                 ),
@@ -230,7 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('='),
                   onPressed: () {
                     setState( () {
-                      _entered += '=';
+                      // TODO: add '=' functionality
                     });
                   },
                 ),
@@ -238,9 +245,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('<—'),
                   onPressed: () {
                     setState( () {
-                      if (_entered.isNotEmpty) {
-                        _entered = _entered.substring(0, _entered.length - 1);
-                      }
+                      _entered = backspace(_entered);
                     });
                   },
                 ),
@@ -248,7 +253,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('+'),
                   onPressed: () {
                     setState( () {
-                      _entered += '+';
+                      _entered = appendToEntered(_entered, '+');
                     });
                   },
                 ),
