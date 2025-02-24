@@ -31,6 +31,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  int _value = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +43,128 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '$_value',
+              style: TextStyle(fontSize: 50.0),
+            ),
+            // 7 8 9 /
+            Row(
+              children: [
+                TextButton(
+                  child: Text('7'),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('8'),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('9'),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('/'),
+                  onPressed: () {
+                    
+                  },
+                ),
+              ],
+            ),
+            // 4 5 6 *
+            Row(
+              children: [
+                TextButton(
+                  child: Text('4'),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('5'),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('6'),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('*'),
+                  onPressed: () {
+                    
+                  },
+                ),
+              ],
+            ),
+            // 1 2 3 -
+            Row(
+              children: [
+                TextButton(
+                  child: Text('1'),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('2'),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('3'),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('-'),
+                  onPressed: () {
+                    
+                  },
+                ),
+              ],
+            ),
+            // 0 = < +
+            Row(
+              children: [
+                TextButton(
+                  child: Text('0'),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('='),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('<'),
+                  onPressed: () {
+                    
+                  },
+                ),
+                TextButton(
+                  child: Text('+'),
+                  onPressed: () {
+                    
+                  },
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
