@@ -74,26 +74,35 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 80,
-              width: double.infinity,
-              child: FittedBox(
-                child: Text(
-                  result,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
+              child: SizedBox(
+                height: 80,
+                width: double.infinity,
+                child: FittedBox(
+                  alignment: Alignment(1.0, 0.0),
+                  child: Text(
+                    result,
+                  ),
                 ),
               ),
             ),
-            SizedBox(
-              height: 80,
-              width: double.infinity,
-              child: FittedBox(
-                child: Text(
-                  _entered,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
+              child: SizedBox(
+                height: 80,
+                width: double.infinity,
+                child: FittedBox(
+                  alignment: Alignment(1.0, 0.0),
+                  child: Text(
+                    _entered,
+                  ),
                 ),
               ),
             ),
             // Clear, (, ), MOD
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
                   child: Text('CE'),
@@ -132,6 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             // 7 8 9 /
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
                   child: Text('7'),
@@ -169,6 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             // 4 5 6 *
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
                   child: Text('4'),
@@ -206,6 +217,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             // 1 2 3 -
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
                   child: Text('1'),
@@ -243,6 +255,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             // 0 = < +
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
                   child: Text('0'),
