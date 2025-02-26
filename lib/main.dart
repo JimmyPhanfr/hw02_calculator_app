@@ -46,7 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
     if (mEntered.isNotEmpty) {
       mEntered = mEntered.substring(0, mEntered.length - 1);
     }
-    
     return mEntered;
   }
 
@@ -54,6 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       var exp = GrammarParser().parse(mEntered);
       var evaluation = exp.evaluate(EvaluationType.REAL, ContextModel());
+      if (evaluation.toString() == 'Infinity') {
+        return 'Error: Cannot divide by 0';
+      }
       return evaluation.toString();
     } 
     catch(e) {
@@ -75,17 +77,19 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 80,
               width: double.infinity,
-              child: Text(
-                result,
-                style: TextStyle(fontSize: 50.0),
+              child: FittedBox(
+                child: Text(
+                  result,
+                ),
               ),
             ),
             SizedBox(
               height: 80,
               width: double.infinity,
-              child: Text(
-                _entered,
-                style: TextStyle(fontSize: 50.0),
+              child: FittedBox(
+                child: Text(
+                  _entered,
+                ),
               ),
             ),
             // Clear, N/A, N/A, MOD
@@ -248,7 +252,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('='),
                   onPressed: () {
                     setState( () {
-                      // TODO: add '=' functionality
                       result = calculate(_entered);
                     });
                   },
