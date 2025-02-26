@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:math_expressions/math_expressions.dart';
+// imports math_expressions to parse and calculate equations user writes
+import 'package:math_expressions/math_expressions.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -18,9 +19,6 @@ class MyApp extends StatelessWidget {
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(Colors.amberAccent),
-            textStyle: WidgetStatePropertyAll(
-              TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
           ),
         ),
       ),
@@ -39,8 +37,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-  String result = '0';
+  // _result will store value calculated from _entered when user presses the '=' button.
+  String _result = '0';
   String _entered = '';
 
   String appendToEntered(String mEntered, String a){
@@ -55,15 +53,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return mEntered;
   }
 
+  // function implements the math expressions package to robustly calculates the _result
   String calculate(String mEntered){
     try {
       var exp = GrammarParser().parse(mEntered);
       var evaluation = exp.evaluate(EvaluationType.REAL, ContextModel());
+      // the math expressions package will return infinity if a number is divided by zero, which we will inform the user of an error.
       if (evaluation.toString() == 'Infinity') {
         return 'Error: Cannot divide by 0';
       }
       return evaluation.toString();
     } 
+    // catches if extra operators are included in the expression or other errors
     catch(e) {
       return 'Error';
     }
@@ -80,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Textbox that displays 'Result:'
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
               child: SizedBox(
@@ -93,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+            // Textbox that displays the value of _result
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
               child: SizedBox(
@@ -101,11 +104,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: FittedBox(
                   alignment: Alignment(1.0, 0.0),
                   child: Text(
-                    result,
+                    _result,
                   ),
                 ),
               ),
             ),
+            // Textbox that displays the expression user has written, else displays prompt for user to press buttons
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
               child: SizedBox(
@@ -122,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            // Clear, (, ), MOD
+            // Row includes Clear, (, ), MOD buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -130,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('Clear'),
                   onPressed: () {
                     setState( () {
-                      result = '0';
+                      _result = '0';
                       _entered = '';
                     });
                   },
@@ -161,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            // 7 8 9 /
+            // row includes 7, 8, 9, / buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -199,7 +203,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            // 4 5 6 *
+            // Row includes 4, 5, 6, * buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -237,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            // 1 2 3 -
+            // Row includes 1, 2, 3, - buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -275,7 +279,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            // 0 = < +
+            // Row includes 0, =, <-, + buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -291,7 +295,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('='),
                   onPressed: () {
                     setState( () {
-                      result = calculate(_entered);
+                      _result = calculate(_entered);
                     });
                   },
                 ),
