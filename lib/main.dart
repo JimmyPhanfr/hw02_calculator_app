@@ -15,6 +15,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(Colors.amberAccent),
+            textStyle: WidgetStatePropertyAll(
+              TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
       ),
       home: const MyHomePage(title: 'Calculator App'),
     );
@@ -34,8 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String result = '0';
   String _entered = '';
-
-    // bool _isresult_decimal = true;
 
   String appendToEntered(String mEntered, String a){
     mEntered += a;
@@ -75,7 +81,20 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+              child: SizedBox(
+                height: 40,
+                width: double.infinity/5,
+                child: FittedBox(
+                  alignment: Alignment(1.0, 0.0),
+                  child: Text(
+                    'Result:',
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
               child: SizedBox(
                 height: 80,
                 width: double.infinity,
@@ -88,15 +107,18 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
               child: SizedBox(
                 height: 80,
                 width: double.infinity,
                 child: FittedBox(
                   alignment: Alignment(1.0, 0.0),
-                  child: Text(
-                    _entered,
-                  ),
+                  child: _entered == '' ? 
+                  Text(
+                    'Press buttons to write equation', 
+                    style: TextStyle(color: Colors.grey), 
+                    ) : 
+                  Text(_entered),
                 ),
               ),
             ),
@@ -105,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
-                  child: Text('CE'),
+                  child: Text('Clear'),
                   onPressed: () {
                     setState( () {
                       result = '0';
