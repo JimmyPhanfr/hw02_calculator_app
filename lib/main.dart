@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            // Clear, N/A, N/A, MOD
+            // Clear, (, ), MOD
             Row(
               children: [
                 TextButton(
@@ -105,15 +105,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
                 TextButton(
-                  child: Text('N/A'),
+                  child: Text('('),
                   onPressed: () {
-                    // nothing
+                    setState( () {
+                      _entered = appendToEntered(_entered, '(');
+                    });
                   },
                 ),
                 TextButton(
-                  child: Text('N/A'),
+                  child: Text(')'),
                   onPressed: () {
-                    // nothing
+                    setState( () {
+                      _entered = appendToEntered(_entered, ')');
+                    });
                   },
                 ),
                 TextButton(
