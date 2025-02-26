@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  int result = 0;
+  String result = '0';
   String _entered = '';
 
     // bool _isresult_decimal = true;
@@ -49,6 +50,17 @@ class _MyHomePageState extends State<MyHomePage> {
     return mEntered;
   }
 
+  String calculate(String mEntered){
+    try {
+      var exp = GrammarParser().parse(mEntered);
+      var evaluation = exp.evaluate(EvaluationType.REAL, ContextModel());
+      return evaluation.toString();
+    } 
+    catch(e) {
+      return 'Error';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 80,
               width: double.infinity,
               child: Text(
-                '$result',
+                result,
                 style: TextStyle(fontSize: 50.0),
               ),
             ),
@@ -76,29 +88,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontSize: 50.0),
               ),
             ),
-            // Clear, - (unary), % (percentage), MOD
+            // Clear, N/A, N/A, MOD
             Row(
               children: [
                 TextButton(
                   child: Text('CE'),
                   onPressed: () {
                     setState( () {
+                      result = '0';
                       _entered = '';
                     });
                   },
                 ),
                 TextButton(
-                  child: Text('-'),
+                  child: Text('N/A'),
                   onPressed: () {
-                    setState(() {
-                      appendToEntered(_entered, '-');                     
-                    });
+                    // nothing
                   },
                 ),
                 TextButton(
-                  child: Text('%'),
+                  child: Text('N/A'),
                   onPressed: () {
-                    // TODO: add int -> percentage functionality
+                    // nothing
                   },
                 ),
                 TextButton(
@@ -142,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('÷'),
                   onPressed: () {
                     setState( () {
-                      _entered = appendToEntered(_entered, '÷');
+                      _entered = appendToEntered(_entered, '/');
                     });
                   },
                 ),
@@ -216,7 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('–'),
                   onPressed: () {
                     setState( () {
-                      _entered = appendToEntered(_entered, '–');
+                      _entered = appendToEntered(_entered, '-');
                     });
                   },
                 ),
@@ -238,6 +249,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     setState( () {
                       // TODO: add '=' functionality
+                      result = calculate(_entered);
                     });
                   },
                 ),
